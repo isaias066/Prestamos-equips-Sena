@@ -1,0 +1,52 @@
+package com.mycompany.prestamoequipossena;
+
+public class Equipo {
+    private final String codigo;
+    private final String nombre;
+    private final String tipo;
+    private boolean disponible;
+
+    public Equipo(String codigo, String nombre, String tipo) {
+        this.codigo = codigo;
+        this.nombre = nombre;
+        this.tipo = tipo;
+        this.disponible = true;
+    }
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public boolean isDisponible() {
+        return disponible;
+    }
+
+    public void prestar() {
+        if (disponible) {
+            disponible = false;
+            System.out.println("El equipo " + nombre + " ha sido prestado.");
+        } else {
+            System.out.println("El equipo " + nombre + " no está disponible.");
+        }
+    }
+
+    public void devolver() {
+        disponible = true;
+        System.out.println("El equipo " + nombre + " ha sido devuelto.");
+    }
+    
+    public void mostrarEquipo() {
+        System.out.println("Codigo: " + codigo);
+        System.out.println("Nombre: " + nombre);
+        System.out.println("Tipo: " + tipo);
+        System.out.println("Disponible: " + (disponible ? "Si" : "No"));
+    }
+} 
