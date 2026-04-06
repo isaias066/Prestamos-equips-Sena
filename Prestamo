@@ -1,0 +1,53 @@
+package com.mycompany.prestamoequipossena;
+
+public class Prestamo {
+    private final Aprendiz aprendiz;
+    private final Equipo equipo;
+    private final String fechaPrestamo;
+    private boolean activo;
+
+    
+    public Prestamo(Aprendiz aprendiz, Equipo equipo, String fechaPrestamo) {
+        this.aprendiz = aprendiz;
+        this.equipo = equipo;
+        this.fechaPrestamo = fechaPrestamo;
+        this.activo = true;
+    }
+
+    
+    public Aprendiz getAprendiz() {
+        return aprendiz;
+    }
+
+    public Equipo getEquipo() {
+        return equipo;
+    }
+
+    public String getFechaPrestamo() {
+        return fechaPrestamo;
+    }
+
+    public boolean isActivo() {
+        return activo;
+    }
+
+    public void devolverEquipo() {
+        if (activo) {
+            activo = false;
+            equipo.devolver();
+            System.out.println("Prestamo finalizado correctamente.");
+        } else {
+            System.out.println("Este prestamo ya habia sido cerrado.");
+        }
+    }
+
+    public void mostrarPrestamo() {
+        System.out.println("-----DATOS DEL PRESTAMO-----");
+        System.out.println("Aprendiz: " + aprendiz.getNombre());
+        System.out.println("Documento: " + aprendiz.getDocumento());
+        System.out.println("Equipo: " + equipo.getNombre());
+        System.out.println("Codigo equipo: " + equipo.getCodigo());
+        System.out.println("Fecha prestamo: " + fechaPrestamo);
+        System.out.println("Estado: " + (activo ? "Activo" : "Devuelto"));
+    }
+}
