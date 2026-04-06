@@ -1,0 +1,104 @@
+package com.mycompany.prestamoequipossena;
+
+import java.util.ArrayList;
+
+public class InventarioPrestamos {
+    private final ArrayList<Aprendiz> aprendices;
+    private final ArrayList<Equipo> equipos;
+    private final ArrayList<Prestamo> prestamos;
+
+    public InventarioPrestamos() {
+        aprendices = new ArrayList<>();
+        equipos = new ArrayList<>();
+        prestamos = new ArrayList<>();
+    }
+
+    public void registrarAprendiz(Aprendiz aprendiz) {
+        aprendices.add(aprendiz);
+        System.out.println("Aprendiz registrado: " + aprendiz.getNombre());
+    }
+
+    public void registrarEquipo(Equipo equipo) {
+        equipos.add(equipo);
+        System.out.println("Equipo registrado: " + equipo.getNombre());
+    }
+
+    public Aprendiz buscarAprendiz(String documento) {
+        for (Aprendiz aprendiz : aprendices) {
+            if (aprendiz.getDocumento().equals(documento)) {
+                return aprendiz;
+            }
+        }
+        return null;
+    }
+
+    // Buscar equipo por código
+    public Equipo buscarEquipo(String codigo) {
+        for (Equipo equipo : equipos) {
+            if (equipo.getCodigo().equalsIgnoreCase(codigo)) {
+                return equipo;
+            }
+        }
+        return null;
+    }
+
+    public void registrarPrestamo(String documentoAprendiz, String codigoEquipo, String fecha) {
+        Aprendiz aprendiz = buscarAprendiz(documentoAprendiz);
+        Equipo equipo = buscarEquipo(codigoEquipo);
+
+        if (aprendiz == null) {
+            System.out.println("Error: aprendiz no encontrado.");
+            return;
+        }
+
+        if (equipo == null) {
+            System.out.println("Error: equipo no encontrado.");
+            return;
+        }
+
+        if (!equipo.isDisponible()) {
+            System.out.println("Error: el equipo no esta disponible.");
+            return;
+        }
+
+        equipo.prestar();
+        Prestamo nuevoPrestamo = new Prestamo(aprendiz, equipo, fecha);
+        prestamos.add(nuevoPrestamo);
+        System.out.println("Prestamo registrado con exito.");
+    }
+
+    // Devolver equipo
+    public void devolverEquipo(String codigoEquipo) {
+        for (Prestamo prestamo : prestamos) {
+            if (prestamo.getEquipo().getCodigo().equalsIgnoreCase(codigoEquipo) && prestamo.isActivo()) {
+                prestamo.devolverEquipo();
+                return;
+            }
+        }
+        System.out.println("No se encontro un prestamo activo para ese equipo.");
+    }
+
+    public void listarEquipos() {
+        System.out.println("-----LISTA DE EQUIPOS-----");
+        for (Equipo equipo : equipos) {
+            equipo.mostrarEquipo();
+            System.out.println("----------------------");
+        }
+    }
+
+    public void listarAprendices() {
+        System.out.println("-----LISTA DE APRENDICES-----");
+        for (Aprendiz aprendiz : aprendices) {
+            aprendiz.mostrarPerfil();
+            System.out.println("----------------------");
+        }
+    }
+
+    public void listarPrestamos() {
+        System.out.println("-----LISTA DE PRÉSTAMOS-----");
+        for (Prestamo prestamo : prestamos) {
+            prestamo.mostrarPrestamo();
+            System.out.println("----------------------");
+        }
+    }
+}
