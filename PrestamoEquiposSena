@@ -1,0 +1,44 @@
+package com.mycompany.prestamoequipossena;
+
+public class PrestamoEquiposSena {
+    public static void main(String[] args) {
+        InventarioPrestamos sistema = new InventarioPrestamos();
+
+        Aprendiz a1 = new Aprendiz("123456789", "Alexander", "2876543", "3172718086");
+        Aprendiz a2 = new Aprendiz("987654321", "Adan", "2876544", "3019876543");
+
+        sistema.registrarAprendiz(a1);
+        sistema.registrarAprendiz(a2);
+
+        Equipo e1 = new Equipo("E001", "Portatil Lenovo", "Portatil");
+        Equipo e2 = new Equipo("E002", "Multimetro Fluke", "Instrumento");
+        Equipo e3 = new Equipo("E003", "Video Beam Epson", "Proyector");
+
+        sistema.registrarEquipo(e1);
+        sistema.registrarEquipo(e2);
+        sistema.registrarEquipo(e3);
+
+        System.out.println();
+        sistema.listarAprendices();
+
+        System.out.println();
+        sistema.listarEquipos();
+
+        System.out.println();
+        sistema.registrarPrestamo("123456789", "E001", "06/04/2026");
+        sistema.registrarPrestamo("987654321", "E002", "06/04/2026");
+
+        System.out.println();
+        sistema.listarPrestamos();
+
+        System.out.println();
+        sistema.devolverEquipo("E001");
+
+        System.out.println();
+        sistema.listarPrestamos();
+
+
+        System.out.println();
+        sistema.listarEquipos();
+    }
+}
