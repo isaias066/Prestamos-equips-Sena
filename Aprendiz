@@ -1,0 +1,39 @@
+package com.mycompany.prestamoequipossena;
+
+public class Aprendiz {
+    private final String documento;
+    private final String nombre;
+    private final String ficha;
+    private final String telefono;
+
+
+    public Aprendiz(String documento, String nombre, String ficha, String telefono) {
+        this.documento = documento;
+        this.nombre = nombre;
+        this.ficha = ficha;
+        this.telefono = telefono;
+    }
+
+    public String getDocumento() {
+        return documento;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getFicha() {
+        return ficha;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void mostrarPerfil() {
+        System.out.println("Documento: " + documento);
+        System.out.println("Nombre: " + nombre);
+        System.out.println("Ficha: " + ficha);
+        System.out.println("Telefono: " + telefono);
+    }
+}
